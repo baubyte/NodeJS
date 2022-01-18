@@ -20,6 +20,20 @@ const argv = require('yargs')
             type: 'boolean'
         }
     })
+    .options({
+        'e': {
+            alias: 'end',
+            demandOption: false,
+            default: 10,
+            describe: 'Limite, hasta que Numero Multiplicar.',
+            type: 'number'
+        }
+    }).check((argv, options) => {
+        if (isNaN(argv.base)) {
+            throw 'El Limite debe ser un Numero.';
+        }
+        return true
+    })
     .argv;
 
 module.exports = argv;

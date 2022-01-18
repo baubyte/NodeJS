@@ -1,10 +1,10 @@
 const fs = require('fs');
 const colors = require('colors');
 //Al ser async retorna una promesa
-const createFile = async (base, list = false) => {
+const createFile = async (base, list, end) => {
     try {
         let result = "";
-        for (let index = 0; index <= 10; index++) {
+        for (let index = 0; index <= end; index++) {
             result += `${base} ${'x'.green} ${index} ${'='.green} ${base * index}\n`;
         }
         //Si listar es true se muestra el resultado por consola
