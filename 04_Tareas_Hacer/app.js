@@ -1,14 +1,11 @@
 require('colors');
-const {mostrarMenu, pausa} = require('./helpers/messages');
+
+const {inquirerMenu} = require('./helpers/inquirer');
 //Punto de Inicio
 const main = async ()=>{
     let option = '';
     do {
-        option = await mostrarMenu();
-        //Solo mostrar la Pausa cuando no sea 0
-        if (option !=='0') {
-            await pausa();
-        }
+        option = await inquirerMenu();
     } while (option !=='0');
 }
 
