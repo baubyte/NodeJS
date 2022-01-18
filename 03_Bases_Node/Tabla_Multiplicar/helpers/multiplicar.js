@@ -3,16 +3,18 @@ const colors = require('colors');
 //Al ser async retorna una promesa
 const createFile = async (base, list = false, end = 10) => {
     try {
+        let consola = "";
         let result = "";
         for (let index = 0; index <= end; index++) {
-            result += `${base} ${'x'.green} ${index} ${'='.green} ${base * index}\n`;
+            consola += `${base} ${'x'.green} ${index} ${'='.green} ${base * index}\n`;
+            result += `${base} x ${index} = ${base * index}\n`;
         }
         //Si listar es true se muestra el resultado por consola
         if (list) {
             console.log('========================='.green)
             console.log(colors.blue('       Tabla del'), colors.green(base));
             console.log('========================='.green);
-            console.log(result);
+            console.log(consola);
         }
         //Creamos el archivo
         fs.writeFileSync(`./files/tabla_${base}.txt`, result);
