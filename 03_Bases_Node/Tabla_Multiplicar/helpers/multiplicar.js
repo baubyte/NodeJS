@@ -1,7 +1,7 @@
 const fs = require('fs');
 const colors = require('colors');
 //Al ser async retorna una promesa
-const createFile = async (base, list, end) => {
+const createFile = async (base, list = false, end = 10) => {
     try {
         let result = "";
         for (let index = 0; index <= end; index++) {
