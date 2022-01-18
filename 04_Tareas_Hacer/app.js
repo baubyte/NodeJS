@@ -6,9 +6,7 @@ const Tarea = require('./models/tarea');
 const main = async ()=>{
     let option = '';
     do {
-        //option = await inquirerMenu();
-        const tarea = new Tarea('Prueba')
-        console.log(tarea);
+        option = await inquirerMenu();
         await pausa();
     } while (option !=='0');
 }
