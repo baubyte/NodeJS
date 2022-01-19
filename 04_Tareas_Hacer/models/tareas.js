@@ -1,4 +1,4 @@
-
+const Tarea = require('./models/tarea');
 class Tareas {
     //Propiedades
     /**
@@ -7,8 +7,21 @@ class Tareas {
      */
     _listado = {};
 
+    /**
+     * Constructor sin parámetros
+     */
     constructor() {
         this._listado = {}
+    }
+    /**
+     * 
+     * @param {*} descripcion 
+     */
+    createTarea(descripcion = '') {
+        //Creamos la nueva tarea
+        const tarea = new Tarea(descripcion);
+        //Agregamos la tarea a la lista de tareas_hacer
+        this._listado[tarea.id] = tarea;
     }
 }
 //Exports
