@@ -117,7 +117,6 @@ class Tareas {
             if (!tarea.completadoEn) {
                 //La marcamos como completa
                 tarea.completadoEn = new Date().toISOString();
-                console.log(tarea.completadoEn);
             } 
         });
         /**

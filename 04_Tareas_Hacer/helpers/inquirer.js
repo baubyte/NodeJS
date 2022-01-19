@@ -61,6 +61,7 @@ const pausa = async () => {
     const questions = [
         {
             type: 'input',
+            prefix: '',
             name: 'enter',
             message: `Presione ${'Enter'.green} para Continuar`,
         }
@@ -79,6 +80,7 @@ const leerInput = async (message) => {
         {
             type: 'input',
             name: 'descripcion',
+            prefix: '',
             message,
             validate(value){
                 if (value.length === 0) {
@@ -119,6 +121,7 @@ const listarTareasBorrar = async (tareas = []) => {
         {
             type: 'list',
             name: 'id',
+            prefix: '',
             message: 'Borrar',
             choices
         }
@@ -137,6 +140,7 @@ const confirmar = async (message) => {
         {
             type: 'confirm',
             name: 'ok',
+            prefix: '',
             message,
         }
     ];
@@ -171,6 +175,7 @@ const confirmar = async (message) => {
         {
             type: 'checkbox',
             name: 'ids',
+            prefix: '',
             message: 'Seleccione',
             choices
         }
