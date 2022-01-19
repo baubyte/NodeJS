@@ -93,6 +93,11 @@ const leerInput = async (message) => {
     //retornamos el valor ingresado
     return descripcion;
 }
+/**
+ * Lista las tareas a borrar
+ * @param {*} tareas 
+ * @returns 
+ */
 const listarTareasBorrar = async (tareas = []) => {
 
     //Creamos los choices a partir del array de tareas
@@ -103,6 +108,11 @@ const listarTareasBorrar = async (tareas = []) => {
             name: `${index} ${tarea.descripcion}`,
         }
     });
+    //Agregamos la opción de cancelar
+    choices.unshift({
+        value: '0',
+        name: `${'0.'.green} Cancelar`,
+    })
     //Armamos las opciones
     const questions = [
         {
@@ -115,10 +125,25 @@ const listarTareasBorrar = async (tareas = []) => {
     const {id} = await inquirer.prompt(questions);
     return id;
 }
+const confirmar = async (message) => {
+    //Pregunta de pausa
+    const questions = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message,
+        }
+    ];
+    //Pregunta
+    const {ok} = await inquirer.prompt(questions);
+    //retornamos el valor ingresado
+    return ok;
+}
 //Exports
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
-    listarTareasBorrar
+    listarTareasBorrar,
+    confirmar
 }
