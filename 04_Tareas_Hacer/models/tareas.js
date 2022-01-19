@@ -47,6 +47,18 @@ class Tareas {
         //Agregamos la tarea a la lista de tareas_hacer
         this._listado[tarea.id] = tarea;
     }
+
+    /**
+     * Muestra el listado completo de las tareas
+     */
+    listadoCompleto() {
+        const tareas = [];
+        this.listadoArray.forEach(({descripcion, completadoEn}, index) => {
+            const indexFormat = `${index+1}`.green; 
+            const estado = (completadoEn) ? 'Completado'.green : 'Pendiente'.red;
+            console.log(`${indexFormat} ${descripcion} :: ${estado}`);
+        });
+    }
 }
 //Exports
 module.exports = Tareas;
