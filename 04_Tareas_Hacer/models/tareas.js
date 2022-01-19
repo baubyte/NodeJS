@@ -63,6 +63,10 @@ class Tareas {
         });
     }
 
+    /**
+     * Muestra las tareas pendientes o completas
+     * @param {*} completas 
+     */
     listarCompletasPendientes(completas = true) {
         let count = 0;
         //Recorremos las tareas
@@ -88,6 +92,16 @@ class Tareas {
                 }
             }
         });
+    }
+    /**
+     * Elimina un tarea
+     * @param {*} id 
+     */
+    borrarTarea(id =''){
+        //Comprobamos si existe el id
+        if (this._listado[id]) {
+            delete this._listado[id];
+        }
     }
 }
 //Exports

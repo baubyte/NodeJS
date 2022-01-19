@@ -3,7 +3,8 @@ require('colors');
 const {
     inquirerMenu,
     pausa,
-    leerInput
+    leerInput,
+    listarTareasBorrar
 } = require('./helpers/inquirer');
 const {saveDb, readDb} = require('./helpers/manageDb');
 const Tareas = require('./models/tareas');
@@ -46,12 +47,9 @@ const main = async () => {
 
                 break;
             case '6':
-
+                //Borrar tareas
+                const id = await listarTareasBorrar(tareas.listadoArray);
                 break;
-            case '0':
-
-                break;
-
         }
         //Guardamos las tareas en la dB
         saveDb(tareas.listadoArray);
