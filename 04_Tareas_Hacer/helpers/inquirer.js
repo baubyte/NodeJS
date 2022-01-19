@@ -80,7 +80,7 @@ const leerInput = async (message) => {
             name: 'descripcion',
             message,
             validate(value){
-                if (this.validate.length === 0) {
+                if (value.length === 0) {
                     return 'Debe Ingresar una Descripción.';
                 }else{
                     return true;
