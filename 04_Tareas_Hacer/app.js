@@ -12,7 +12,9 @@ const main = async () => {
     let option = '';
     //Instancia del modelo de las tareas
     const tareas = new Tareas();
+    //Se ejecuta siempre que no sea la opción 0
     do {
+        //Mostrar el menu
         option = await inquirerMenu();
 
         switch (option) {
@@ -23,8 +25,8 @@ const main = async () => {
                 tareas.createTarea(descripcion);
                 break;
             case '2':
-                //
-                console.log(tareas._listado);
+                //listar tareas
+                console.log(tareas.listadoArray);
                 break;
             case '3':
 
