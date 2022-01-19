@@ -38,7 +38,10 @@ const questions = [
         ],
     }
 ];
-
+/**
+ * Menu Principal 
+ * @returns 
+ */
 const inquirerMenu = async () => {
     console.clear();
     console.log('=========================='.green);
@@ -49,7 +52,9 @@ const inquirerMenu = async () => {
     //Retornamos la opción
     return opcion;
 }
-//Pausa
+/**
+ * Pausa de las opciones
+ */
 const pausa = async () => {
     //Pregunta de pausa
     const questions = [
@@ -63,8 +68,34 @@ const pausa = async () => {
     console.log('\n');
     await inquirer.prompt(questions);
 }
+/**
+ * Lee el input para crear la tarea
+ * @param {*} inputDescription 
+ */
+const leerInput = async (message) => {
+    //Pregunta de pausa
+    const questions = [
+        {
+            type: 'input',
+            name: 'descripcion',
+            message,
+            validate(value){
+                if (this.validate.length === 0) {
+                    return 'Debe Ingresar una Descripción.';
+                }else{
+                    return true;
+                }
+            }
+        }
+    ];
+    //Pregunta
+    const {descripcion} = await inquirer.prompt(questions);
+    //retornamos el valor ingresado
+    return descripcion;
+}
 //Exports
 module.exports = {
     inquirerMenu,
-    pausa
+    pausa,
+    leerInput
 }
