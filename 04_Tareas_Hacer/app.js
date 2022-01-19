@@ -5,7 +5,8 @@ const {
     pausa,
     leerInput,
     listarTareasBorrar,
-    confirmar
+    confirmar,
+    listarTareasCompletar
 } = require('./helpers/inquirer');
 const { saveDb, readDb } = require('./helpers/manageDb');
 const Tareas = require('./models/tareas');
@@ -44,8 +45,10 @@ const main = async () => {
                 //listar tareas pendientes
                 tareas.listarCompletasPendientes(false);
                 break;
-            case 5:
-
+            case '5':
+                //Listar tareas para marcar como completadas
+                const ids = await listarTareasCompletar(tareas.listadoArray);
+                tareas.toggleCompletado(ids);
                 break;
             case '6':
                 //Borrar tareas
@@ -59,7 +62,6 @@ const main = async () => {
                         console.log("La Tarea fue Borrada.".green);
                     }
                     break;
-                    
                 }
         }
         //Guardamos las tareas en la dB

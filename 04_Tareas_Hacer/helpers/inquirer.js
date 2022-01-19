@@ -125,6 +125,11 @@ const listarTareasBorrar = async (tareas = []) => {
     const {id} = await inquirer.prompt(questions);
     return id;
 }
+/**
+ * Mensaje de Confirmar
+ * @param {*} message 
+ * @returns 
+ */
 const confirmar = async (message) => {
     //Pregunta de pausa
     const questions = [
@@ -139,11 +144,45 @@ const confirmar = async (message) => {
     //retornamos el valor ingresado
     return ok;
 }
+/**
+ * Lista las tareas a completar
+ * @param {*} tareas 
+ * @returns 
+ */
+ const listarTareasCompletar = async (tareas = []) => {
+
+    //Creamos los choices a partir del array de tareas
+    const choices = tareas.map((tarea, i) =>{
+        const index = `${i+1}.`.green;
+        return  {
+            value: tarea.id,
+            name: `${index} ${tarea.descripcion}`,
+            checked:(tarea.completadoEn) ? true : false,
+        }
+    });
+    //Agregamos la opción de cancelar
+    /* choices.unshift({
+        value: '0',
+        name: `${'0.'.green} Cancelar`,
+    }) */
+    //Armamos las opciones
+    const questions = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Seleccione',
+            choices
+        }
+    ];
+    const {ids} = await inquirer.prompt(questions);
+    return ids;
+}
 //Exports
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
     listarTareasBorrar,
-    confirmar
+    confirmar,
+    listarTareasCompletar
 }

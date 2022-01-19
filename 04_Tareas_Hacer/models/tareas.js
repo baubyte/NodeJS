@@ -78,8 +78,8 @@ class Tareas {
                     //Incrementamos el valor del contador 
                     count += 1;
                     //Mostramos las tareas
-                    console.log(`${(count+'.').green} ${descripcion} :: ${completadoEn}`);
-
+                    console.log(`${(count+'.').green} ${descripcion} :: ${completadoEn.green}`);
+                    
                 }
             } else {
                 //Verificamos si no esta completa
@@ -87,7 +87,7 @@ class Tareas {
                     //Incrementamos el valor del contador 
                     count += 1;
                     //Mostramos las tareas
-                    console.log(`${(count+'.').green} ${descripcion} :: ${completadoEn}`);
+                    console.log(`${(count+'.').green} ${descripcion} :: ${'Pendiente'.red}`);
 
                 }
             }
@@ -102,6 +102,34 @@ class Tareas {
         if (this._listado[id]) {
             delete this._listado[id];
         }
+    }
+    /**
+     * 
+     * @param {*} ids 
+     */
+    toggleCompletado(ids = []){
+        //Recorremos los ids
+
+        ids.forEach(id => {
+            //Obtenemos la tarea por el id
+            const tarea = this._listado[id];
+            //Comprobamos que no este completa
+            if (!tarea.completadoEn) {
+                //La marcamos como completa
+                tarea.completadoEn = new Date().toISOString();
+                console.log(tarea.completadoEn);
+            } 
+        });
+        /**
+         * Recorremos el array de tareas para marcar como no completas 
+         * los ids que no viene en el array de ids
+         */
+        this.listadoArray.forEach(tarea => {
+            if (!ids.includes(tarea.id)) {
+                //Obtenemos la tarea por el id
+                this._listado[tarea.id].completadoEn = null; ;
+            }
+        });
     }
 }
 //Exports
