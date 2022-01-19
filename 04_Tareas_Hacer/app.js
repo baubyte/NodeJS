@@ -5,6 +5,7 @@ const {
     pausa,
     leerInput
 } = require('./helpers/inquirer');
+const {saveDb, readDb} = require('./helpers/manageDb');
 const Tareas = require('./models/tareas');
 //Punto de Inicio
 const main = async () => {
@@ -12,6 +13,11 @@ const main = async () => {
     let option = '';
     //Instancia del modelo de las tareas
     const tareas = new Tareas();
+    //Carga dB
+    const tareasDb = readDb();
+    if (tareasDb) {
+        tareas.cargarTareasFromArray(tareasDb);
+    }
     //Se ejecuta siempre que no sea la opción 0
     do {
         //Mostrar el menu
@@ -45,6 +51,8 @@ const main = async () => {
                 break;
 
         }
+        //Guardamos las tareas en la dB
+        saveDb(tareas.listadoArray);
         await pausa();
     } while (option !== '0');
 }
