@@ -33,7 +33,7 @@ const questions = [
             },
             {
                 value: '0',
-                name: `${'0.'.green} Salir \n`,
+                name: `${'0.'.green} Salir`,
             },
         ],
     }
@@ -70,7 +70,7 @@ const pausa = async () => {
 }
 /**
  * Lee el input para crear la tarea
- * @param {*} inputDescription 
+ * @param {*} message 
  */
 const leerInput = async (message) => {
     //Pregunta de pausa
