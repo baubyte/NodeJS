@@ -5,6 +5,7 @@ const questions = [
     {
         type: 'list',
         name: 'opcion',
+        prefix: '',
         message: '¿Qué desea Hacer?',
         choices: [
             {
@@ -17,7 +18,7 @@ const questions = [
             },
             {
                 value: '3',
-                name: `${'3.'.green} Listar Tareas Completada`,
+                name: `${'3.'.green} Listar Tareas Completas`,
             },
             {
                 value: '4',
