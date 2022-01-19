@@ -28,6 +28,15 @@ class Tareas {
     constructor() {
         this._listado = {}
     }
+
+    /**
+     * Pasa las al _listado de tareas
+     * @param {*} tareas 
+     */
+    cargarTareasFromArray(tareas = []){
+        //recorremos las tareas y la vamos agregando
+        tareas.forEach(tarea =>this._listado[tarea.id] = tarea);
+    }
     /**
      * 
      * @param {*} descripcion 
