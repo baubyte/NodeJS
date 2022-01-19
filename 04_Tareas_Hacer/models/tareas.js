@@ -10,7 +10,7 @@ class Tareas {
     /**
      * Obtener el _listado en un array
      */
-    get listadoArray(){
+    get listadoArray() {
         const listado = [];
         /**
          * Recorremos el _listado de objetos y obtenemos la key
@@ -33,9 +33,9 @@ class Tareas {
      * Pasa las al _listado de tareas
      * @param {*} tareas 
      */
-    cargarTareasFromArray(tareas = []){
+    cargarTareasFromArray(tareas = []) {
         //recorremos las tareas y la vamos agregando
-        tareas.forEach(tarea =>this._listado[tarea.id] = tarea);
+        tareas.forEach(tarea => this._listado[tarea.id] = tarea);
     }
     /**
      * 
@@ -52,11 +52,41 @@ class Tareas {
      * Muestra el listado completo de las tareas
      */
     listadoCompleto() {
-        const tareas = [];
-        this.listadoArray.forEach(({descripcion, completadoEn}, index) => {
-            const indexFormat = `${index+1}`.green; 
-            const estado = (completadoEn) ? 'Completado'.green : 'Pendiente'.red;
+        //Recorremos las tareas
+        this.listadoArray.forEach(({ descripcion, completadoEn }, index) => {
+            //Formateamos el index
+            const indexFormat = `${index + 1}`.green;
+            //Verificamos el estado
+            const estado = (completadoEn) ? 'Completa'.green : 'Pendiente'.red;
+            //Mostramos las tareas
             console.log(`${indexFormat} ${descripcion} :: ${estado}`);
+        });
+    }
+
+    listarCompletasPendientes(completas = true) {
+        let count = 0;
+        //Recorremos las tareas
+        this.listadoArray.forEach(({ descripcion, completadoEn }) => {
+            //Verificamos si solo tenemos que mostrar las completas
+            if (completas) {
+                //Verificamos si esta completa
+                if (completadoEn) {
+                    //Incrementamos el valor del contador 
+                    count += 1;
+                    //Mostramos las tareas
+                    console.log(`${(count+'.').green} ${descripcion} :: ${completadoEn}`);
+
+                }
+            } else {
+                //Verificamos si no esta completa
+                if (!completadoEn) {
+                    //Incrementamos el valor del contador 
+                    count += 1;
+                    //Mostramos las tareas
+                    console.log(`${(count+'.').green} ${descripcion} :: ${completadoEn}`);
+
+                }
+            }
         });
     }
 }
