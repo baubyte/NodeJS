@@ -1,4 +1,4 @@
-const Tarea = require('./models/tarea');
+const Tarea = require('./tarea');
 class Tareas {
     //Propiedades
     /**
