@@ -1,8 +1,8 @@
 require('colors');
 const {
     inquirerMenu,
-    pausa,
-    leerInput,
+    pause,
+    readInput,
     listarTareasBorrar,
     confirmar,
     listarTareasCompletar
@@ -21,8 +21,8 @@ const main = async () => {
         switch (option) {
             case 1:
                 //Mostrar el input para buscar la ciudad
-                const city = await leerInput('Ingrese la Ciudad: ');
-                await searches.citySearch(city);
+                const term = await readInput('Ingrese la Ciudad: ');
+                await searches.citySearch(term);
                 //Buscar Ciudad
 
 
@@ -39,7 +39,7 @@ const main = async () => {
                 console.log('Historial de Búsquedas');
                 break;
         }
-        if(option !== 0 ) await pausa();
+        if(option !== 0 ) await pause();
     } while (option !== 0);
 }
 
