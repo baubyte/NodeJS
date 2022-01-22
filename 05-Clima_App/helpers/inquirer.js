@@ -9,32 +9,16 @@ const questions = [
         message: '¿Qué desea Hacer?',
         choices: [
             {
-                value: '1',
-                name: `${'1.'.green} Crear una Tarea`,
+                value: 1,
+                name: `${'1.'.green} Buscar Ciudad`,
             },
             {
-                value: '2',
-                name: `${'2.'.green} Listar Tareas`,
+                value: 2,
+                name: `${'2.'.green} Historial de Búsquedas`,
             },
             {
-                value: '3',
-                name: `${'3.'.green} Listar Tareas Completas`,
-            },
-            {
-                value: '4',
-                name: `${'4.'.green} Listar Tareas Pendientes`,
-            },
-            {
-                value: '5',
-                name: `${'5.'.green} Completar Tarea(s)`,
-            },
-            {
-                value: '6',
-                name: `${'6.'.green} Borrar Tarea`,
-            },
-            {
-                value: '0',
-                name: `${'0.'.green} Salir`,
+                value: 0,
+                name: `${'3.'.green} Salir`,
             },
         ],
     }
@@ -56,7 +40,7 @@ const inquirerMenu = async () => {
 /**
  * Pausa de las opciones
  */
-const pausa = async () => {
+const pause = async () => {
     //Pregunta de pausa
     const questions = [
         {
@@ -74,17 +58,17 @@ const pausa = async () => {
  * Lee el input para crear la tarea
  * @param {*} message 
  */
-const leerInput = async (message) => {
+const readInput = async (message) => {
     //Pregunta de pausa
     const questions = [
         {
             type: 'input',
-            name: 'descripcion',
+            name: 'place',
             prefix: '',
             message,
             validate(value){
                 if (value.length === 0) {
-                    return 'Debe Ingresar una Descripción.';
+                    return 'Debe Ingresar la Ciudad a Buscar.';
                 }else{
                     return true;
                 }
@@ -92,23 +76,23 @@ const leerInput = async (message) => {
         }
     ];
     //Pregunta
-    const {descripcion} = await inquirer.prompt(questions);
+    const {place} = await inquirer.prompt(questions);
     //retornamos el valor ingresado
-    return descripcion;
+    return place;
 }
 /**
- * Lista las tareas a borrar
- * @param {*} tareas 
+ * Lista los lugares encontrados
+ * @param {*} places 
  * @returns 
  */
-const listarTareasBorrar = async (tareas = []) => {
+const listPlaces = async (places = []) => {
 
     //Creamos los choices a partir del array de tareas
-    const choices = tareas.map((tarea, i) =>{
+    const choices = places.map((place, i) =>{
         const index = `${i+1}.`.green;
         return  {
-            value: tarea.id,
-            name: `${index} ${tarea.descripcion}`,
+            value: place.id,
+            name: `${index} ${place.name}`,
         }
     });
     //Agregamos la opción de cancelar
@@ -122,7 +106,7 @@ const listarTareasBorrar = async (tareas = []) => {
             type: 'list',
             name: 'id',
             prefix: '',
-            message: 'Borrar',
+            message: 'Seleccionar Lugar:',
             choices
         }
     ];
@@ -134,7 +118,7 @@ const listarTareasBorrar = async (tareas = []) => {
  * @param {*} message 
  * @returns 
  */
-const confirmar = async (message) => {
+const confirm = async (message) => {
     //Pregunta de pausa
     const questions = [
         {
@@ -149,46 +133,11 @@ const confirmar = async (message) => {
     //retornamos el valor ingresado
     return ok;
 }
-/**
- * Lista las tareas a completar
- * @param {*} tareas 
- * @returns 
- */
- const listarTareasCompletar = async (tareas = []) => {
-
-    //Creamos los choices a partir del array de tareas
-    const choices = tareas.map((tarea, i) =>{
-        const index = `${i+1}.`.green;
-        return  {
-            value: tarea.id,
-            name: `${index} ${tarea.descripcion}`,
-            checked:(tarea.completadoEn) ? true : false,
-        }
-    });
-    //Agregamos la opción de cancelar
-    /* choices.unshift({
-        value: '0',
-        name: `${'0.'.green} Cancelar`,
-    }) */
-    //Armamos las opciones
-    const questions = [
-        {
-            type: 'checkbox',
-            name: 'ids',
-            prefix: '',
-            message: 'Seleccione',
-            choices
-        }
-    ];
-    const {ids} = await inquirer.prompt(questions);
-    return ids;
-}
 //Exports
 module.exports = {
     inquirerMenu,
-    pausa,
-    leerInput,
-    listarTareasBorrar,
-    confirmar,
-    listarTareasCompletar
+    pause,
+    readInput,
+    listPlaces,
+    confirm
 }
