@@ -1,18 +1,22 @@
 {
   "name": "Clima_App",
   "version": "1.0.0",
-  "description": "",
+  "description": "Una Simple App del Clima por Consola Interactiva.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "clima",
+    "app"
+  ],
+  "author": "BAUBYTE",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "colors": "^1.4.0",
+    "dotenv": "^14.2.0",
     "inquirer": "^8.2.0"
   }
 }

@@ -8,8 +8,8 @@ class Searches{
     //Propiedad con los parámetros para mapbox
     get paramsMapBox() {
         return {
-            'access_token': 'pk.eyJ1IjoiYmF1Ynl0ZSIsImEiOiJja3lxNnVrNzIwaDQ3MndwYm5qZndqb2Q0In0.daKpE6uvwZ7n8DUwEuvrPA',
-            'limit': 5,
+            'access_token': process.env.MAPBOX_ACCESS_TOKEN,
+            'limit': 10,
             'language': 'es'
         }
     }
@@ -36,11 +36,11 @@ class Searches{
             //Buscamos las ciudad desde la api petición get axios
             const response = await instance.get();
             //Armamos el return
-            return response.data.features.map( lugar => ({
-                id: lugar.id,
-                nombre: lugar.place_name,
-                lng: lugar.center[0],
-                lat: lugar.center[1],
+            return response.data.features.map( place => ({
+                id: place.id,
+                name: place.place_name,
+                longitude: place.center[0],
+                latitude: place.center[1],
             }));
         } catch (error) {
             console.log(error);
