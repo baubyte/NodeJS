@@ -122,7 +122,8 @@ class Searches {
             //si existe no hacemos nada
             return;
         }
-        this.history = this.history.splice(0, 10);
+        //Solo Guardamos 10 lugares en el historial
+        this.history = this.history.splice(0, 9);
         //Agregamos el historial al array
         this.history.unshift(place.toLocaleLowerCase());
         //Guardamos en el db

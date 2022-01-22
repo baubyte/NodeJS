@@ -10,7 +10,7 @@ const questions = [
         choices: [
             {
                 value: 1,
-                name: `${'1.'.green} Buscar Ciudad`,
+                name: `${'1.'.green} Buscar Lugar`,
             },
             {
                 value: 2,
@@ -68,7 +68,7 @@ const readInput = async (message) => {
             message,
             validate(value){
                 if (value.length === 0) {
-                    return 'Debe Ingresar la Ciudad a Buscar.';
+                    return 'Debe Ingresar la Lugar a Buscar.';
                 }else{
                     return true;
                 }
