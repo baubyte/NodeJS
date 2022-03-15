@@ -20,26 +20,8 @@ class Server {
      * Rutas
      */
     routes() {
-        this.app.get('/api', (req, res) => {
-            res.status(200).json({
-                msg: 'GET API'
-            })
-        });
-        this.app.put('/api', (req, res) => {
-            res.status(200).json({
-                msg: 'PUT API'
-            })
-        });
-        this.app.post('/api', (req, res) => {
-            res.status(201).json({
-                msg: 'POST API'
-            })
-        });
-        this.app.delete('/api', (req, res) => {
-            res.status(200).json({
-                msg: 'DELETE API'
-            })
-        });
+        //Middleware de Rutas
+        this.app.use('/api/users',require('../routes/user'));
     }
     /**
      * Carga todos los middleware
