@@ -9,6 +9,7 @@ class Server {
      */
     constructor() {
         this.app = express();
+        this.usersRoutePath = '/api/users';
         //Puerto
         this.port = process.env.PORT || 8081;
         //Middleware
@@ -21,7 +22,7 @@ class Server {
      */
     routes() {
         //Middleware de Rutas
-        this.app.use('/api/users',require('../routes/user'));
+        this.app.use(this.usersRoutePath,require('../routes/user'));
     }
     /**
      * Carga todos los middleware
