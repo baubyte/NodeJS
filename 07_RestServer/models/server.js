@@ -30,7 +30,7 @@ class Server {
             })
         });
         this.app.post('/api', (req, res) => {
-            res.status(200).json({
+            res.status(201).json({
                 msg: 'POST API'
             })
         });
