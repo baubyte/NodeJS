@@ -1,10 +1,21 @@
 const express = require('express')
 const app = express()
 const port = 3000
+//TODO: require('hbs')
+
+//Estable el engine hbs para representar el html
+app.set('view engine', 'hbs');
 
 //Middleware Contenido Estáticos
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    //renderizamos la vista
+    res.render('home',{
+        name:'BAUBYTE',
+        title:'Home'
+    });
+})
 app.get('/generic', (req, res) => {
     res.sendFile(__dirname+'/public/generic.html');
 })
