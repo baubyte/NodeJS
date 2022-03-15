@@ -1,10 +1,12 @@
+const hbs = require('hbs');
 const express = require('express')
 const app = express()
 const port = 3000
-//TODO: require('hbs')
 
 //Estable el engine hbs para representar el html
 app.set('view engine', 'hbs');
+//Registrando los parciales
+hbs.registerPartials(__dirname + '/views/partials');
 
 //Middleware Contenido Estáticos
 app.use(express.static('public'));
