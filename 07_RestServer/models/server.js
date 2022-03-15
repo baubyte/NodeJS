@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 /**
  * Clase servidor express
  */
@@ -44,6 +45,8 @@ class Server {
      * Carga todos los middleware
      */
     middleware() {
+        //cors
+        this.app.use(cors());
         //Directorio publico
         this.app.use(express.static('public'));
     }
@@ -52,7 +55,7 @@ class Server {
      */
     listen() {
         this.app.listen(this.port, () => {
-            console.log('Escuchando en el puerto',this.port)
+            console.log('Escuchando en el puerto', this.port)
         })
     }
 }
