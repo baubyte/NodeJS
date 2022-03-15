@@ -22,7 +22,7 @@ class Server {
      */
     routes() {
         //Middleware de Rutas
-        this.app.use(this.usersRoutePath,require('../routes/user'));
+        this.app.use(this.usersRoutePath,require('../routes/users'));
     }
     /**
      * Carga todos los middleware
