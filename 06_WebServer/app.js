@@ -1,7 +1,8 @@
+require('dotenv').config();
 const hbs = require('hbs');
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 8081;
 
 //Estable el engine hbs para representar el html
 app.set('view engine', 'hbs');
