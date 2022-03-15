@@ -19,10 +19,16 @@ app.get('/', (req, res) => {
     });
 })
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname+'/public/generic.html');
+    res.render('generic',{
+        name:'BAUBYTE',
+        title:'Generic'
+    });
 })
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname+'/public/elements.html');
+    res.render('elements',{
+        name:'BAUBYTE',
+        title:'Elements'
+    });
 })
 /**
  * Cualquier otra ruta
