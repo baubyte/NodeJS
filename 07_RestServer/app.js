@@ -1,13 +1,6 @@
 require('dotenv').config();
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 8081;
+const Server = require('./models/server');
 
-app.get('/', (req, res) => {
-    //renderizamos la vista
+const server = new Server();
 
-});
-app.listen(port, () => {
-    console.log(`Escuchando en el puerto ${port}`)
-  })
-  
+server.listen();
