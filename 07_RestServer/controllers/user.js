@@ -1,4 +1,5 @@
 const {response} = require('express');
+const User = require('../models/user');
 
 const users = (req = request, res = response) => {
     const {q, name ='Not Name', page = 1, limit = 10} = req.query;
@@ -17,11 +18,13 @@ const update = (req = request, res = response) => {
         id
     })
 }
-const create = (req = request, res = response) => {
+const create = async (req = request, res = response) => {
+    const user = new User(req.body);
+    await user.save();
     const {name} = req.body;
     res.status(201).json({
         msg: 'POST API',
-        name
+        user
     })
 }
 const destroy = (req = request, res = response) => {
