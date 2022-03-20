@@ -32,6 +32,8 @@ class Server {
         this.app.use(cors());
         //Directorio publico
         this.app.use(express.static('public'));
+        //Pareseo y lectura del body
+        this.app.use(express.json());
     }
     /**
      * Puerto de escucha
