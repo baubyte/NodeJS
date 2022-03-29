@@ -2,6 +2,7 @@ const {response} = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('../models/user');
 
+
 const users = (req = request, res = response) => {
     const {q, name ='Not Name', page = 1, limit = 10} = req.query;
     res.status(200).json({
@@ -20,9 +21,16 @@ const update = (req = request, res = response) => {
     })
 }
 const create = async (req = request, res = response) => {
+   
     const { name, email, password, role } = req.body;
     const user = new User({name, email, password, role});
     //Verificar si el correo existe
+    const isEmailExist = await User.findOne({email});
+    if (isEmailExist) {
+        return res.status(400).json({
+            msg: 'El Email ya se encuentra Registrado.'
+        });
+    }
     //Hash Contraseña
     const salt = bcryptjs.genSaltSync(10);
     user.password = bcryptjs.hashSync(password, salt);
